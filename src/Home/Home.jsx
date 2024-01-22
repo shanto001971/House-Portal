@@ -1,9 +1,13 @@
+import Banner from "../BannerSection/Banner";
+import HomesPortal from "../HomesPortal/HomesPortal";
 
 
 const Home = () => {
+
     return (
-        <div>
-            this is home page
+        <div className="lg:px-5">
+            <Banner/>
+            <HomesPortal/>
         </div>
     );
 };

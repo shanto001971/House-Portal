@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 lg:px-10">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">House Portal</a>
+                <Link className=""><img className="h-24" src="https://png.pngtree.com/element_our/png/20181214/real-estate-house-logo-design-template-vector-illustration-png_269520.jpg" alt="" /></Link>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
@@ -16,7 +17,7 @@ const Navbar = () => {
                             <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
                     </div>
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="mt-3 z-10 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <a className="justify-between">
                                 Profile
