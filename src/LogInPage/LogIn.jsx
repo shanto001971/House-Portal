@@ -23,7 +23,7 @@ const LogIn = () => {
 
         try {
             const response = await axiosSecure.post('/auth/login', formData);
-            console.log(response)
+            // console.log(response)
 
             if (response.status === 201 && response.data.email) {
                 localStorage.setItem('token',response?.data?._id)
