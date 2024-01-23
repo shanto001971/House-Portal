@@ -33,7 +33,7 @@ const HomesPortal = () => {
     }
 
     return (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:my-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:my-5">
             {
                 homesData?.map(singleData => <Card key={singleData?._id} data={singleData} />)
             }

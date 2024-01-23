@@ -4,6 +4,7 @@ import LayOut from "../LayOut/LayOut";
 import HouseView from "../HouseView/HouseView";
 import LogIn from "../LogInPage/LogIn";
 import SignUpPage from "../SignUpPage/SignUpPage";
+import SearchResult from "../SearchResultPage/SearchResult";
 
 export const router = createBrowserRouter([
     {
@@ -20,11 +21,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/logIn",
-                element: <LogIn/>
+                element: <LogIn />
             },
             {
                 path: "/signUp",
-                element: <SignUpPage/>
+                element: <SignUpPage />
+            },
+            {
+                path: "/searchResult",
+                element: <SearchResult />
             },
         ]
     },
