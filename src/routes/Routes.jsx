@@ -5,6 +5,8 @@ import HouseView from "../HouseView/HouseView";
 import LogIn from "../LogInPage/LogIn";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import SearchResult from "../SearchResultPage/SearchResult";
+import WonerDashboard from "../WonerDashboard/WonerDashboard";
+import RenterDashboard from "../RenterDashboard/RenterDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
             {
                 path: "/searchResult",
                 element: <SearchResult />
+            },
+            {
+                path: "/wonerDashboard",
+                element: <WonerDashboard />
+            },
+            {
+                path: "/renterDashboard",
+                element: <RenterDashboard />
             },
         ]
     },

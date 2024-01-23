@@ -5,6 +5,7 @@ import { CiHeart } from "react-icons/ci";
 import Calender from "./Calender";
 import 'react-date-range/dist/styles.css'; // Import the default styles
 import 'react-date-range/dist/theme/default.css';
+import useAuth from "../hooks/useAuth";
 
 const HouseView = () => {
     const { id } = useParams();
@@ -12,11 +13,14 @@ const HouseView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [axiosSecure] = useAxios();
+    const [user, refetch] = useAuth()
     const [value, setValue] = useState({
         startDate: new Date(10),
         endDate: new Date(),
         key: "selection",
     });
+
+    console.log(user)
 
     useEffect(() => {
         axiosSecure.get(`/houseView/${id}`)
@@ -31,7 +35,7 @@ const HouseView = () => {
             });
     }, []);
 
-    console.log(homesData);
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -43,7 +47,8 @@ const HouseView = () => {
 
     const handleSelect = (ranges) => {
         setValue({ ...value });
-      };
+    };
+
 
 
     return (

@@ -2,15 +2,22 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useContext, useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
-import AuthProvider, { AuthContext } from "../provider/AuthProvider";
+import  { AuthContext } from "../provider/AuthProvider";
+import { FaSortDown } from "react-icons/fa";
 
 
 const Navbar = () => {
     const { searchResults, setSearchResults } = useContext(AuthContext)
     const [user, refetch] = useAuth();
     const [axiosSecure] = useAxios()
-    const [searchCity, setSearchCity] = useState('');
     const [searchName, setSearchName] = useState('');
+    const [searchCity, setSearchCity] = useState('');
+    const [bedrooms, setBedrooms] = useState('');
+    const [bathrooms, setBathrooms] = useState('');
+    const [roomSize, setRoomSize] = useState('');
+    const [availability, setAvailability] = useState('');
+    const [minRent, setMinRent] = useState('');
+    const [maxRent, setMaxRent] = useState('');
     const navigate = useNavigate()
 
     const handleLogOut = () => {
@@ -19,6 +26,8 @@ const Navbar = () => {
     }
 
     // console.log(user);
+    // console.log(searchResults)
+
     useEffect(() => {
         // Check if there are search results and navigate to the search result page
         if (searchResults.length > 0) {
@@ -26,21 +35,34 @@ const Navbar = () => {
         }
     }, [searchResults, navigate]);
 
-    
+
     if (user?.email) {
         refetch()
     }
 
     const handleSearch = async () => {
         try {
-            // Make a request to your backend API to perform the search
-            const response = await axiosSecure.get(`/api/search?name=${searchName}&city=${searchCity}`);
-            setSearchResults(response.data);  // Assuming the backend returns an array of results
+            const response = await axiosSecure.get('/api/search', {
+                params: {
+                    name: searchName,
+                    city: searchCity,
+                    bedrooms,
+                    bathrooms,
+                    roomSize,
+                    availability,
+                    minRent,
+                    maxRent,
+                },
+            });
+            setSearchResults(response.data);
         } catch (error) {
             console.error('Error during search:', error);
         }
-    }
+    };
 
+    // useEffect(() => {
+    //     handleSearch();
+    // }, []);
     // console.log(searchResults)
 
     return (
@@ -54,29 +76,19 @@ const Navbar = () => {
                 <div className="flex items-center relative lg:w-full px-3">
                     <input
                         type="text"
-                        placeholder="Search House Name"
+                        placeholder="Search House Name,city,bedrooms,bathrooms,room size,availability"
                         className="input input-bordered w-24 md:w-auto lg:w-full"
                         value={searchName}
                         onChange={(e) => setSearchName(e.target.value)}
                     />
-                    <select
-                        className="absolute right-5 py-[7px] hidden lg:block"
-                        value={searchCity}
-                        onChange={(e) => setSearchCity(e.target.value)}
-                    >
-                        <option className="" value="" >All categories</option>
-                        <option value="Villagetown">Village town</option>
-                        <option value="Suburbia">Suburbia</option>
-                        <option value="Townburg">Town burg</option>
-                    </select>
 
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img title={user?.fullName} alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-
                         </div>
+                        <FaSortDown />
                     </div>
                     <ul tabIndex={0} className="mt-3 z-10 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                         <li>
@@ -86,6 +98,10 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
+                        {user?.role === "House Owner" && <Link to="/wonerDashboard"><li className="ml-3">Owner Dashboard</li></Link>}
+                        {user?.role === "House Renter" && <Link to="/renterDashboard" ><li className="ml-3">Renter Dashboard</li></Link>}
+
+
                         {user.email ? (
                             <button onClick={handleLogOut}><Link to="/">LogOut</Link></button>
                         ) : (
