@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../Home/Home";
 import LayOut from "../LayOut/LayOut";
 import HouseView from "../HouseView/HouseView";
+import LogIn from "../LogInPage/LogIn";
+import SignUpPage from "../SignUpPage/SignUpPage";
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +17,14 @@ export const router = createBrowserRouter([
             {
                 path: "/houseView/:id",
                 element: <HouseView />
+            },
+            {
+                path: "/logIn",
+                element: <LogIn/>
+            },
+            {
+                path: "/signUp",
+                element: <SignUpPage/>
             },
         ]
     },

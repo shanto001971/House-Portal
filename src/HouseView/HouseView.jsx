@@ -49,7 +49,7 @@ const HouseView = () => {
     return (
         <div className="lg:flex px-5">
             <div className="lg:w-[40%]">
-                <img className="rounded-md" src={homesData?.picture} alt="" />
+                <img className="rounded-md w-full" src={homesData?.picture} alt="" />
             </div>
             <div className="lg:w-[35%] lg:p-5 lg:py-5">
                 <h2 className="card-title">Name: {homesData?.name}</h2>
@@ -65,7 +65,7 @@ const HouseView = () => {
                 <p>phone Number : {homesData?.phoneNumber}</p>
                 <div className="flex items-center justify-center mt-5">
                     <button className="btn btn-primary w-[80%] ">Book Now</button>
-                    <CiHeart className="w-[20%] h-10" />
+                    <CiHeart className="w-[20%] h-10 cursor-pointer" />
                 </div>
             </div>
             <div className="lg:w-[25%]">
