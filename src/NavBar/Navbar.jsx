@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
+    const [user, refetch] = useAuth();
+
+    const handleLogOut = () => {
+        localStorage.removeItem('token');
+        refetch()
+    }
+
+    // console.log(user);
+
+    if (user?.email) {
+        refetch()
+    }
+
     return (
         <div className="navbar bg-base-100 lg:px-10">
             <div className="flex-1">
                 <Link className=""><img className="h-24" src="https://png.pngtree.com/element_our/png/20181214/real-estate-house-logo-design-template-vector-illustration-png_269520.jpg" alt="" /></Link>
             </div>
             <div className="flex-none gap-2">
+                <h1>{user.fullName}</h1>
                 <div className="form-control">
+
                     <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
                 </div>
                 <div className="dropdown dropdown-end">
@@ -25,7 +41,11 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <Link to="/logIn"><li><a>LogIn</a></li></Link>
+                        {user.email ? (
+                            <button onClick={handleLogOut}><Link to="/">LogOut</Link></button>
+                        ) : (
+                            <button className="z-10"><Link to="/login">LogIn</Link></button>
+                        )}
                     </ul>
                 </div>
             </div>

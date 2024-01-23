@@ -22,7 +22,7 @@ const HomesPortal = () => {
             });
     }, []);
 
-    console.log(homesData);
+    // console.log(homesData);
 
     if (loading) {
         return <div>Loading...</div>;

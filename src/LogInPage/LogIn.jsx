@@ -23,9 +23,10 @@ const LogIn = () => {
 
         try {
             const response = await axiosSecure.post('/auth/login', formData);
-            // console.log(response.status)
+            console.log(response)
 
             if (response.status === 201 && response.data.email) {
+                localStorage.setItem('token',response?.data?._id)
                 toast.success('Login successful!');
                 // Redirect or navigate to the authenticated route
                 navigate('/')
