@@ -25,9 +25,6 @@ const Navbar = () => {
         refetch()
     }
 
-    // console.log(user);
-    // console.log(searchResults)
-
     useEffect(() => {
         // Check if there are search results and navigate to the search result page
         if (searchResults.length > 0) {
