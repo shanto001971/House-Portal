@@ -57,11 +57,6 @@ const Navbar = () => {
         }
     };
 
-    // useEffect(() => {
-    //     handleSearch();
-    // }, []);
-    // console.log(searchResults)
-
     return (
         <div className="navbar bg-base-100 lg:px-10 flex justify-between">
             <div className="w-40">
